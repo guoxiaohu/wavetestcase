@@ -1,0 +1,42 @@
+#!/bin/sh
+#SBATCH --job-name=MultiParallelOnCompute
+#SBATCH --nodes=32
+#SBATCH --tasks-per-node=32
+#SBATCH --cpus-per-task=1
+
+#SBATCH --exclusive
+#SBATCH --time=02:20:00
+#SBATCH --hint=nomultithread
+#SBATCH --distribution=block:block
+#SBATCH --account=c01-eng
+#SBATCH --partition=standard
+#SBATCH --qos=standard
+#SBATCH --export=none
+
+
+
+module load PrgEnv-gnu
+module load cray-fftw
+
+export FOAM_INSTALL_PATH="/work/c01/c01/guoxh/OpenFOAM/OpenFOAM-v2206"
+source ${FOAM_INSTALL_PATH}/etc/bashrc
+
+. ${WM_PROJECT_DIR:?}/bin/tools/RunFunctions        # Tutorial run functions
+#------------------------------------------------------------------------------
+
+#restore0Dir
+
+#blockMesh
+
+#setFields
+
+#decomposePar
+
+#runParallel setFields
+#srun -n 1024 setFields
+
+srun -n 1024 interFoam
+
+#runParallel $(getApplication)
+
+#------------------------------------------------------------------------------
