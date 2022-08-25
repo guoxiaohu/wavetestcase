@@ -24,13 +24,13 @@ source ${FOAM_INSTALL_PATH}/etc/bashrc
 . ${WM_PROJECT_DIR:?}/bin/tools/RunFunctions        # Tutorial run functions
 #------------------------------------------------------------------------------
 
-#restore0Dir
+restore0Dir
 
-#blockMesh
+blockMesh
 
-#setFields
+setFields
 
-#decomposePar
+decomposePar
 
 #runParallel setFields
 #srun -n 1024 setFields
